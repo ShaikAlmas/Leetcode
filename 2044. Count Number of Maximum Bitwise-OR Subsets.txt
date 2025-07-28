@@ -1,0 +1,21 @@
+class Solution {
+    int max=0,count=0;
+    public int countMaxOrSubsets(int[] nums) {
+        backtrack(nums,0,0);
+        return count;
+    }
+    void backtrack(int[]nums,int index,int orVal){
+        if(index==nums.length){
+            if(orVal>max){
+                max=orVal;
+                count =1;
+            }
+            else if(orVal==max){
+                count++;
+            }
+            return;
+        }
+        backtrack(nums,index+1,orVal|nums[index]);
+        backtrack(nums,index+1,orVal);
+    }
+}
